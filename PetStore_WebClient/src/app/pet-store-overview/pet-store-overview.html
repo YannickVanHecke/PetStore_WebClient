@@ -20,6 +20,7 @@
           <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
           <th class="border border-gray-300 px-4 py-2 text-left">Geboortedatum (Leeftijd)</th>
           <th class="border border-gray-300 px-4 py-2 text-left">Geslacht</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Prijs</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
           <td class="border border-gray-300 px-4 py-2">{{ item.animalType | animalType}}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.birthDate | date:'dd/MM/yyyy'}} ({{item.birthDate | age}} Jaar) </td>
           <td class="border border-gray-300 px-4 py-2">{{ item.sex | sex}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.price}}</td>
         </tr>}
       </tbody>
     </table>
