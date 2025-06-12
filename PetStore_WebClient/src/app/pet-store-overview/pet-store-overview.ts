@@ -22,3 +22,4 @@ export class PetStoreOverview {
       this.errorMessage = "Het ophalen van data is mislukt.";
     });
   }
+}

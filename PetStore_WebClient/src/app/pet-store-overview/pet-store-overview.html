@@ -28,7 +28,7 @@
         <tr class="hover:bg-gray-50">
           <td class="border border-gray-300 px-4 py-2">{{ item.name }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.description }}</td>
-          <td class="border border-gray-300 px-4 py-2">{{ item.animalType}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.animalType | animalType}}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.birthDate | date:'dd/MM/yyyy'}}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.sex | sex}}</td>
         </tr>}
