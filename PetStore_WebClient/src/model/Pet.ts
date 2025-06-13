@@ -5,7 +5,7 @@ export class Pet {
     public animalType: number | undefined;
     public birthDate!: Date;
     public sex: boolean | undefined;
-    public price: Number | undefined;
+    public price: Number = 0;
 
     /**
      *

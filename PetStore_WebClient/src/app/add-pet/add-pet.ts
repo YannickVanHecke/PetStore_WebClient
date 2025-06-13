@@ -11,6 +11,7 @@ export class AddPet {
   public pet: Pet;
   public today: Date;
   public IsSelectPetKindTouch = false;
+  public IsPriceSet = false;
   
   /**
    *
@@ -22,6 +23,10 @@ export class AddPet {
 
   public setTouchToTrue() {
     this.IsSelectPetKindTouch = true;
+  }
+
+  public change(price: Number) {
+    this.IsPriceSet = true;
   }
 
 
