@@ -3,17 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { PetStoreOverview } from './pet-store-overview/pet-store-overview';
+import { SexPipe } from '../pipes/sex-pipe';
+import { AnimalTypePipe } from '../pipes/animal-type-pipe';
+import { provideHttpClient } from '@angular/common/http';
+import { AgePipe } from '../pipes/age-pipe';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    PetStoreOverview,
+    AgePipe,
+    AnimalTypePipe,
+    SexPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
   ],
   bootstrap: [App]
 })
