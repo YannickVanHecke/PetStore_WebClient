@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Pet } from '../../model/Pet';
+import { Pet } from '../../model/Pet';
 
 @Component({
   selector: 'app-add-pet',
