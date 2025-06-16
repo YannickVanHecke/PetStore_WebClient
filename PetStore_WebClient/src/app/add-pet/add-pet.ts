@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './add-pet.scss'
 })
 export class AddPet {
+<<<<<<< HEAD
 
   pet: Pet = new Pet();
   txtName = new FormControl(this.pet.name, [Validators.required, Validators.minLength(3)]);
@@ -25,4 +26,18 @@ export class AddPet {
     console.log(this.pet);
   }
 
+=======
+  
+  pet: Pet = new Pet();
+    txtName = new FormControl(this.pet.name, [Validators.required, Validators.minLength(4)]);
+  constructor() {
+    
+  }
+
+ 
+  public submit() {
+    console.log(this.pet);
+  }
+
+>>>>>>> cf4575fa41020ccfbf899afcbcc63cb1bcba53e5
 }
