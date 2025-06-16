@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Pet } from '../../model/Pet';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-pet',
@@ -8,26 +9,16 @@ import { Pet } from '../../model/Pet';
   styleUrl: './add-pet.scss'
 })
 export class AddPet {
-  public pet: Pet;
-  public today: Date;
-  public IsSelectPetKindTouch = false;
-  public IsPriceSet = false;
   
-  /**
-   *
-   */
+  pet: Pet = new Pet();
+    txtName = new FormControl(this.pet.name, [Validators.required, Validators.minLength(4)]);
   constructor() {
-    this.pet = new Pet();
-    this.today = new Date();
+    
   }
 
-  public setTouchToTrue() {
-    this.IsSelectPetKindTouch = true;
+ 
+  public submit() {
+    console.log(this.pet);
   }
-
-  public change(price: Number) {
-    this.IsPriceSet = true;
-  }
-
 
 }
