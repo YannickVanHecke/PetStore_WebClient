@@ -39,6 +39,7 @@ export class AddPet {
     console.log(this.petGroup.value);
     if (this.petGroup.valid) {
       this.pet = this.petGroup.value;
+      this.petStoreService.AddPet(this.pet).subscribe(result => console.log(result));
     }
 
   }
