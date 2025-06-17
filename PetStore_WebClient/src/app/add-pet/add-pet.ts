@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Pet } from '../../model/Pet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { PetStoreService } from '../../services/pet-store.service';
+import { Pet } from '../../model/Pet';
 
 @Component({
   selector: 'app-add-pet',
@@ -20,7 +22,7 @@ export class AddPet {
   public txtSex = new FormControl(this.pet.sex, [Validators.required]);
   public txtPrice = new FormControl(this.pet.price, [Validators.required]);
 
-  constructor() {
+  constructor(private petStoreService: PetStoreService) {
     this.petGroup = new FormGroup({
       name: this.txtName,
       description: this.txtDescription,
@@ -37,7 +39,6 @@ export class AddPet {
     console.log(this.petGroup.value);
     if (this.petGroup.valid) {
       this.pet = this.petGroup.value;
-
     }
 
   }
