@@ -1,27 +1,26 @@
 <h1 class="text-3xl font-bold">
     Een nieuw huisdier toevoegen
 </h1>
-<form class="w-full max-w-lg" [formGroup]="petGroup">
+<form class="w-full max-w-lg">
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                 Naam
             </label>
-            <input type="text" class="form-control" [formControl]="txtName" required>
-            @if (txtName.invalid && (txtName.dirty || txtName.touched)) {
+            <input type="text" class="form-control" id="txtPetName" [(ngModel)]="pet.name" required>
+            
             <div class="error-message">
-                @if (txtName.hasError('required')) {
+                @if (pet.name === "" || pet.name === undefined) {
                 <div>
                     De naam van het huisdier is verplicht in te vullen.
                 </div>
                 }
-                @if (txtName.hasError('minlength')) {
+                @else if (pet.name.length < 4) {
                 <div>
                     Name must be at least 4 characters long.
                 </div>
-                }
-            </div>
             }
+            </div>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -32,15 +31,15 @@
             <textarea rows="10" cols="50"
                 type="text"
                 class="form-control"
-                [formControl]="txtDescription" required></textarea>
-            @if (txtDescription.invalid && (txtDescription.dirty || txtDescription.touched)) {
+                [formControl]="pet.Description" required></textarea>
+            @if (pet.Description.invalid && (pet.Description.dirty || pet.Description.touched)) {
             <div class="error-message">
-                @if (txtDescription.hasError('required')) {
+                @if (pet.Description.hasError('required')) {
                 <div>
                     De Beschrijving van het huisdier is verplicht in te vullen.
                 </div>
                 }
-                @if (txtDescription.hasError('minlength')) {
+                @if (pet.Description.hasError('minlength')) {
                 <div>
                     description must be at least 4 characters long.
                 </div>
@@ -54,10 +53,10 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                 Geboortedatum
             </label>
-            <input type="date" class="form-control" [formControl]="txtBirthDate" required>
-            @if (txtBirthDate.invalid && (txtBirthDate.dirty || txtBirthDate.touched)) {
+            <input type="date" class="form-control" [formControl]="pet.BirthDate" required>
+            @if (pet.BirthDate.invalid && (pet.BirthDate.dirty || pet.BirthDate.touched)) {
             <div class="error-message">
-                @if (txtBirthDate.hasError('required')) {
+                @if (pet.BirthDate.hasError('required')) {
                 <div>
                     De geboortedatum van het huisdier is verplicht in te vullen.
                 </div>
@@ -73,16 +72,16 @@
             </label>
             <select
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [formControl]="txtAnimalType">
+                [formControl]="pet.AnimalType">
                 <option value=""></option>
                 <option value="0">Vogel</option>
                 <option value="1">Kat</option>
                 <option value="2">Hond</option>
                 <option vlaue="3">Vis</option>
             </select>
-            @if (txtAnimalType.invalid && (txtAnimalType.dirty || txtAnimalType.touched)) {
+            @if (pet.AnimalType.invalid && (pet.AnimalType.dirty || pet.AnimalType.touched)) {
             <div class="error-message">
-                @if (txtAnimalType.hasError('required')) {
+                @if (pet.AnimalType.hasError('required')) {
                 <div>
                     De soort van het huisdier is verplicht in te vullen.
                 </div>
@@ -99,14 +98,14 @@
             </label>
             <select
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [formControl]="txtSex">
+                [formControl]="pet.Sex">
                 <option value=""></option>
                 <option value="M">Mannelijk</option>
                 <option value="V">Vrouwelijk</option>
             </select>
-            @if (txtSex.invalid && (txtSex.dirty || txtSex.touched)) {
+            @if (pet.Sex.invalid && (pet.Sex.dirty || pet.Sex.touched)) {
             <div class="error-message">
-                @if (txtSex.hasError('required')) {
+                @if (pet.Sex.hasError('required')) {
                 <div>
                     Het geslacht van het huisdier is verplicht in te vullen.
                 </div>
@@ -123,10 +122,10 @@
             </label>
             <input type="number"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                [formControl]="txtPrice">
-            @if (txtPrice.invalid && (txtPrice.dirty || txtPrice.touched)) {
+                [ngModel]="pet.Price">
+            @if (pet.price.invalid && (pet.price.dirty || pet.price.touched)) {
             <div class="error-message">
-                @if (txtPrice.hasError('required')) {
+                @if (pet.price.hasError('required')) {
                 <div>
                     De prijs van het huisdier is verplicht in te vullen.
                 </div>

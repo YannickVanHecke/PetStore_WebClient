@@ -13,8 +13,7 @@ import { Pet } from '../../model/Pet';
 export class AddPet {
 
   public pet: Pet = new Pet();
-  public petGroup: FormGroup;
-
+  
   public txtName = new FormControl(this.pet.name, [Validators.required, Validators.minLength(3)]);
   public txtDescription = new FormControl(this.pet.description, [Validators.required]);
   public txtAnimalType = new FormControl(this.pet.animalType, [Validators.required]);
@@ -23,25 +22,14 @@ export class AddPet {
   public txtPrice = new FormControl(this.pet.price, [Validators.required]);
 
   constructor(private petStoreService: PetStoreService) {
-    this.petGroup = new FormGroup({
-      name: this.txtName,
-      description: this.txtDescription,
-      animalType: this.txtAnimalType,
-      birthDate: this.txtBirthDate,
-      sex: this.txtSex,
-      price: this.txtPrice,
-    });
+    
   }
 
 
   public submit() {
-    console.log(this.petGroup);
-    console.log(this.petGroup.value);
-    if (this.petGroup.valid) {
-      this.pet = this.petGroup.value;
-      this.petStoreService.AddPet(this.pet).subscribe(result => console.log(result));
-    }
-
+    console.log(this.pet);
+    this.petStoreService.AddPet(this.pet).subscribe(result => console.log(result));
   }
 
 }
+
