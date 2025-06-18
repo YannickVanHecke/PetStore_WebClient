@@ -10,6 +10,7 @@ import { AnimalTypePipe } from '../pipes/animal-type-pipe';
 import { provideHttpClient } from '@angular/common/http';
 import { AgePipe } from '../pipes/age-pipe';
 import { AddPet } from './add-pet/add-pet';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AddPet } from './add-pet/add-pet';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
   ],
   providers: [

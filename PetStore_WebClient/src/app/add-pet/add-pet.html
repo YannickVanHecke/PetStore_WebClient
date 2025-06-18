@@ -27,12 +27,12 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-description">
                 Beschrijving
             </label>
-            <textarea type="text" class="form-control" id="txtDescription" name="txtDescription" [ngModel]="pet.description" #txtDescription="ngModel" rows="10" cols="50" required></textarea>
+            <textarea type="text" class="form-control" id="txtDescription" name="txtDescription" [(ngModel)]="pet.description" #txtDescription="ngModel" rows="10" cols="50" required></textarea>
             @if (txtDescription.invalid && (txtDescription.dirty || txtDescription.touched)) {
             <div class="error-message">
                 @if (txtDescription.hasError('required')) {
                 <div>
-                    De Beschrijving van het huisdier is verplicht in te vullen.
+                    De beschrijving van het huisdier is verplicht in te vullen.
                 </div>
                 }
             </div>
@@ -44,7 +44,7 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                 Geboortedatum
             </label>
-            <input type="date" class="form-control" id="txtPetBirthDate" name="txtPetBirthDate" [ngModel]="pet.birthDate" #txtPetBirthDate="ngModel" required>
+            <input type="date" class="form-control" id="txtPetBirthDate" name="txtPetBirthDate" [(ngModel)]="pet.birthDateString" #txtPetBirthDate="ngModel" required>
             @if (txtPetBirthDate.invalid && (txtPetBirthDate.dirty || txtPetBirthDate.touched)) {
             <div class="error-message">
                 @if (txtPetBirthDate.hasError('required')) {
@@ -64,16 +64,16 @@
             </label>
             <select
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [ngModel]="pet.AnimalType">
+                [(ngModel)]="pet.animalType" id="txtAnimalType" name="txtAnimalType" #txtAnimalType="ngModel" required>
                 <option value=""></option>
                 <option value="0">Vogel</option>
                 <option value="1">Kat</option>
                 <option value="2">Hond</option>
                 <option vlaue="3">Vis</option>
             </select>
-            @if (pet.AnimalType.invalid && (pet.AnimalType.dirty || pet.AnimalType.touched)) {
+            @if (txtAnimalType.invalid && (txtAnimalType.dirty || txtAnimalType.touched)) {
             <div class="error-message">
-                @if (pet.AnimalType.hasError('required')) {
+                @if (txtAnimalType.hasError('required')) {
                 <div>
                     De soort van het huisdier is verplicht in te vullen.
                 </div>
@@ -90,20 +90,20 @@
             </label>
             <select
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [ngModel]="pet.Sex">
+                [(ngModel)]="pet.sex" id="txtSex" name="txtSex" #txtSex="ngModel" (change)="logSex()" required>
                 <option value=""></option>
-                <option value="M">Mannelijk</option>
-                <option value="V">Vrouwelijk</option>
+                <option value="true">Mannelijk</option>
+                <option value="false">Vrouwelijk</option>
             </select>
-            @if (pet.Sex.invalid && (pet.Sex.dirty || pet.Sex.touched)) {
+            @if (txtSex.invalid && (txtSex.dirty || txtSex.touched)) {
             <div class="error-message">
-                @if (pet.Sex.hasError('required')) {
+                @if (txtSex.hasError('required')) {
                 <div>
                     Het geslacht van het huisdier is verplicht in te vullen.
                 </div>
                 }
             </div>
-            }
+        }
         </div>
     </div>
 
@@ -112,18 +112,14 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-birthdate">
                 Prijs
             </label>
-            <input type="number"
+            <input type="number" id="txtPrice" name="txtPrice"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                [ngModel]="pet.Price">
-            @if (pet.price.invalid && (pet.price.dirty || pet.price.touched)) {
-            <div class="error-message">
-                @if (pet.price.hasError('required')) {
-                <div>
+                [(ngModel)]="pet.price" #txtPrice="ngModel" required [min]="0">
+                @if (txtPrice.invalid && (txtPrice.dirty ||  txtPrice.touched)) {
+                <div class="error-message">
                     De prijs van het huisdier is verplicht in te vullen.
                 </div>
                 }
-            </div>
-            }
         </div>
     </div>
 
@@ -140,11 +136,11 @@
         </button>
         <button type="button" disabled class="focus:outline-none text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             *ngIf="
-            pet === undefined ||
-            pet.name === undefined || pet.name.length === 0 ||
-            pet.birthDate === undefined || pet.birthDate.toString() === 'dd/mm/jjjj' ||
-            pet.description === undefined || pet.description.length === 0 ||
-            pet.price === undefined || pet.price === 0">
+         pet === undefined ||
+         pet.name === undefined || pet.name.length === 0 ||
+         pet.birthDate === undefined || pet.birthDate.toString() === 'dd/mm/jjjj' ||
+         pet.description === undefined || pet.description.length === 0 ||
+         pet.price === undefined || pet.price === 0">
             Toevoegen
         </button>
     </div>
