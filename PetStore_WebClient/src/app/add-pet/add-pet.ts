@@ -14,13 +14,6 @@ export class AddPet {
 
   public pet: Pet = new Pet();
   
-  public txtName = new FormControl(this.pet.name, [Validators.required, Validators.minLength(3)]);
-  public txtDescription = new FormControl(this.pet.description, [Validators.required]);
-  public txtAnimalType = new FormControl(this.pet.animalType, [Validators.required]);
-  public txtBirthDate = new FormControl(this.pet.birthDate, [Validators.required]);
-  public txtSex = new FormControl(this.pet.sex, [Validators.required]);
-  public txtPrice = new FormControl(this.pet.price, [Validators.required]);
-
   constructor(private petStoreService: PetStoreService) {
     
   }

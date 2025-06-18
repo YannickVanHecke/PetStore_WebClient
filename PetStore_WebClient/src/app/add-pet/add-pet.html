@@ -7,16 +7,16 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                 Naam
             </label>
-            <input type="text" class="form-control" id="txtPetName" [(ngModel)]="pet.name" required>
+            <input type="text" class="form-control" id="txtPetName" name="txtPetName" [(ngModel)]="pet.name" #txtPetName="ngModel" required minlength="4">
             <div class="error-message">
-                @if (pet.name === "" || pet.name === undefined) {
+                @if (txtPetName.invalid && (txtPetName.dirty || txtPetName.touched)) {
                 <div>
                     De naam van het huisdier is verplicht in te vullen.
                 </div>
                 }
-                @else if (pet.name.length < 4) {
+                @else if (txtPetName.hasError("minLength")) {
                 <div>
-                    Name must be at least 4 characters long.
+                    De naam van het huisdier moet minstens 4 karakters lang zijn.
                 </div>
             }
             </div>
@@ -31,17 +31,12 @@
             <textarea rows="10" cols="50"
                 type="text"
                 class="form-control"
-                [formControl]="pet.Description" required></textarea>
-            @if (pet.Description.invalid && (pet.Description.dirty || pet.Description.touched)) {
+                [ngModel]="pet.description" required></textarea>
+            @if (pet.description.invalid && (pet.description.dirty || pet.description.touched)) {
             <div class="error-message">
-                @if (pet.Description.hasError('required')) {
+                @if (pet.description.hasError('required')) {
                 <div>
                     De Beschrijving van het huisdier is verplicht in te vullen.
-                </div>
-                }
-                @if (pet.Description.hasError('minlength')) {
-                <div>
-                    description must be at least 4 characters long.
                 </div>
                 }
             </div>
@@ -53,7 +48,7 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                 Geboortedatum
             </label>
-            <input type="date" class="form-control" [formControl]="pet.BirthDate" required>
+            <input type="date" class="form-control" [ngModel]="pet.BirthDate" required>
             @if (pet.BirthDate.invalid && (pet.BirthDate.dirty || pet.BirthDate.touched)) {
             <div class="error-message">
                 @if (pet.BirthDate.hasError('required')) {
@@ -98,7 +93,7 @@
             </label>
             <select
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [formControl]="pet.Sex">
+                [ngModel]="pet.Sex">
                 <option value=""></option>
                 <option value="M">Mannelijk</option>
                 <option value="V">Vrouwelijk</option>
