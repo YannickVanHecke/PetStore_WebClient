@@ -20,14 +20,7 @@ export class AddPet {
   
   }
 
-  public logSex(value: string) {
-    console.log(value);
-    console.log(this.pet);
-  }
-
   public submit() {
-    console.log(this.pet);
-    console.log(this.pet.birthDateString.split("-"));
     this.pet.birthDate = new Date(
       Number(this.pet.birthDateString.split("-")[0]),
       Number(this.pet.birthDateString.split("-")[1]),
@@ -38,11 +31,10 @@ export class AddPet {
     else {
       this.pet.sex = false;
     }
-    console.log(this.pet);
     
     this.petStoreService.AddPet(this.pet).subscribe(
       result => {
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/petstore']);
       }, 
       error => {
         console.log(error);
