@@ -11,6 +11,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { AgePipe } from '../pipes/age-pipe';
 import { AddPet } from './add-pet/add-pet';
 import { CommonModule } from '@angular/common';
+import { Statistics } from './statistics/statistics';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     AnimalTypePipe,
     SexPipe,
     AddPet,
+    Statistics,
   ],
   imports: [
     BrowserModule,
