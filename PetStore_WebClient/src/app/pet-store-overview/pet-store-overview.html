@@ -1,6 +1,5 @@
 <h1 class="text-3xl font-bold">
-  Welcome to the pet store
-
+  Welkom in het voorraadbeheersysteem van de dierenwinkel
 </h1>
 <div>
   @if(errorMessage)
@@ -11,6 +10,12 @@
   }
   @else
   {
+  <div class="menu">
+    <a [routerLink]="['/petstore/new']" #addnewpetbutton
+      class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+      Nieuw
+    </a>
+  </div>
   <div class="overflow-x-auto">
     <table class="min-w-full border-collapse border border-gray-300">
       <thead>
@@ -30,7 +35,8 @@
           <td class="border border-gray-300 px-4 py-2">{{ item.name }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.description }}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.animalType | animalType}}</td>
-          <td class="border border-gray-300 px-4 py-2">{{ item.birthDate | date:'dd/MM/yyyy'}} ({{item.birthDate | age}} Jaar) </td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.birthDate | date:'dd/MM/yyyy'}} ({{item.birthDate | age}}
+            Jaar) </td>
           <td class="border border-gray-300 px-4 py-2">{{ item.sex | sex}}</td>
           <td class="border border-gray-300 px-4 py-2">{{ item.price}}</td>
         </tr>}
@@ -38,4 +44,3 @@
     </table>
   </div>
   }
-

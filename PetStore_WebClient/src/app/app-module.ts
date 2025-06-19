@@ -1,4 +1,5 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -8,6 +9,8 @@ import { SexPipe } from '../pipes/sex-pipe';
 import { AnimalTypePipe } from '../pipes/animal-type-pipe';
 import { provideHttpClient } from '@angular/common/http';
 import { AgePipe } from '../pipes/age-pipe';
+import { AddPet } from './add-pet/add-pet';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,10 +19,14 @@ import { AgePipe } from '../pipes/age-pipe';
     AgePipe,
     AnimalTypePipe,
     SexPipe,
+    AddPet,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

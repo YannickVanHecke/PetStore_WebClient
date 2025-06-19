@@ -8,7 +8,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SexPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
-    if (value === true)
+    if (value === false)
       return "M";
     return "V";
   }

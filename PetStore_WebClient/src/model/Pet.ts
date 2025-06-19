@@ -1,25 +1,19 @@
 export class Pet {
-    public id: Number | undefined;
-    public name: string;
-    public description: string;
-    public animalType: number;
-    public birthDate: Date;
-    public sex: boolean;
-    public price: Number;
+    public id!: Number;
+    public name: string | undefined;
+    public description: string | undefined;
+    public animalType: number | undefined;
+    public birthDate!: Date;
+    public birthDateString!: string;
+    public sexString!: string;
+    public sex: boolean | undefined;
+    public price: number = 0;
 
     /**
      *
      */
-    constructor(Id: Number,
-        name: string, description: string, animalType: number,
-        birthDate: Date, sex: boolean, price: Number) {
-        this.id = Id;
-        this.name = name;
-        this.description = description;
-        this.animalType = animalType;
-        this.birthDate = birthDate;
-        this.sex = sex;
-        this.price = price;
+    constructor() {
+        
     }
 
 
