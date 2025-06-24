@@ -12,6 +12,7 @@ import { AgePipe } from '../pipes/age-pipe';
 import { AddPet } from './add-pet/add-pet';
 import { CommonModule } from '@angular/common';
 import { Statistics } from './statistics/statistics';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { Statistics } from './statistics/statistics';
     AppRoutingModule,
     FormsModule,
     CommonModule,
+    NgApexchartsModule,
     ReactiveFormsModule,
   ],
   providers: [

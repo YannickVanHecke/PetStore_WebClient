@@ -1,1 +1,14 @@
-<p>statistics works!</p>
+@if (exampleChartOptions !== undefined) {
+  <div id="chart">
+  <apx-chart
+    [series]="exampleChartOptions.series!"
+    [chart]="exampleChartOptions.chart!"
+    [dataLabels]="exampleChartOptions.dataLabels!"
+    [plotOptions]="exampleChartOptions.plotOptions!"
+    [yaxis]="exampleChartOptions.yaxis!"
+    [xaxis]="exampleChartOptions.xaxis!"
+    [fill]="exampleChartOptions.fill!"
+    [title]="exampleChartOptions.title!"
+  ></apx-chart>
+</div>}
+
