@@ -14,13 +14,10 @@ export class Statistics {
 
   constructor(private statisticsService: StatisticsService) {
     this.statisticsService.GetStatistics().subscribe({
-      next: (result) => { this.processResultToDiagram(result); },
+      next: (result) => { this.showChart("Aantal huisdieren per soort", result.series, result.xaxis); },
       error: (error) => { this.showError(error); },
       complete: () => { console.log("complete"); }
     });
-  }
-  private processResultToDiagram(result: ChartOptions) {
-    this.showChart("Aantal huisdieren per soort", result.series, result.xaxis);
   }
 
   private showError(error: any) {
@@ -45,7 +42,8 @@ export class Statistics {
       },
       dataLabels: {
         enabled: true,
-        formatter: function (val) {
+        formatter: function (val, opts) {
+          console.log(opts);
           return val + "%";
         },
         offsetY: -20,
@@ -152,7 +150,8 @@ export class Statistics {
       },
       dataLabels: {
         enabled: true,
-        formatter: function (value,options) {
+        formatter: function (value, options) {
+          console.log(value);
           console.log(options);
           return value;
         },
@@ -185,44 +184,46 @@ export class Statistics {
               opacityTo: 0.5
             }
           }
-        }},
-        fill: {
-          type: "gradient",
-          gradient: {
-            shade: "light",
-            type: "horizontal",
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [50, 0, 100, 100]
-          }
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      yaxis: {
+        axisBorder: {
+          show: false
         },
-        yaxis: {
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false
-          },
-          labels: {
-            show: false,
-            formatter: function (val: any) {
-              return val + "%";
-            }
-          }
+        axisTicks: {
+          show: false
         },
-        title: {
-          text: title,
-          offsetY: 320,
-          align: "center",
-          style: {
-            color: "#444"
+        labels: {
+          show: false,
+          formatter: function (val: any, options: any) {
+            console.log(options);
+            return val + "%";
           }
         }
-      };
-    }
-
-
+      },
+      title: {
+        text: "Overzicht van de huisdieren",
+        offsetY: 320,
+        align: "center",
+        style: {
+          color: "#444"
+        }
+      }
+    };
   }
+
+
+}
