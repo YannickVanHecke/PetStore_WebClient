@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StatisticsService } from '../../services/statistics.service';
 import { ChartOptions } from '../../model/chart/chartoptions';
+import { ApexXAxis } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-statistics',
@@ -9,17 +10,23 @@ import { ChartOptions } from '../../model/chart/chartoptions';
   styleUrl: './statistics.scss'
 })
 export class Statistics {
-  public exampleChartOptions: Partial<ChartOptions>;
-  //public chartOptions: Partial<ChartOptions>;
+  public chartOptions: Partial<ChartOptions> | undefined;
 
   constructor(private statisticsService: StatisticsService) {
-    this.statisticsService.GetStatistics().subscribe(
-      result => { this.processResultToDiagram(result.series, result.xaxis);},
-      error => {this.showError(error);}
-  )
+    this.statisticsService.GetStatistics().subscribe({
+      next: (result) => { this.processResultToDiagram(result); },
+      error: (error) => { this.showError(error); },
+      complete: () => { console.log("complete"); }
+    });
+  }
+  private processResultToDiagram(result: ChartOptions) {
+    console.log(result);
+    this.showChart(result.series, result.xaxis);
+  }
 
-  
-    this.exampleChartOptions = {
+  private showError(error: any) {
+    console.log(error);
+    this.chartOptions = {
       series: [
         {
           name: "Inflation",
@@ -39,7 +46,7 @@ export class Statistics {
       },
       dataLabels: {
         enabled: true,
-        formatter: function(val) {
+        formatter: function (val) {
           return val + "%";
         },
         offsetY: -20,
@@ -112,7 +119,7 @@ export class Statistics {
         },
         labels: {
           show: false,
-          formatter: function(val) {
+          formatter: function (val) {
             return val + "%";
           }
         }
@@ -127,14 +134,95 @@ export class Statistics {
       }
     };
   }
-  showError(error: any) {
-    throw new Error('Method not implemented.');
-  }
-  processResultToDiagram(series: ApexAxisChartSeries, xaxis: ApexXAxis) {
-    //this.chartOptions.series = series;
-    //this.chartOptions.xaxis = xaxis;
-    console.log(this.exampleChartOptions);
-  }
 
-  
-}
+  private showChart(series: ApexAxisChartSeries, categories: ApexXAxis) {
+    console.log(series);
+    console.log(categories);
+    this.chartOptions = {
+      series: series,
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top"
+          }
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function (value) {
+          return value;
+        },
+        offsetY: -20,
+        style: {
+          fontSize: "12px",
+          colors: ["#304758"]
+        }
+      },
+      xaxis: {
+        categories: categories,
+        position: "top",
+        labels: {
+          offsetY: -18
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        crosshairs: {
+          fill: {
+            type: "gradient",
+            gradient: {
+              colorFrom: "#D8E3F0",
+              colorTo: "#BED1E6",
+              stops: [0, 100],
+              opacityFrom: 0.4,
+              opacityTo: 0.5
+            }
+          }
+        }},
+        fill: {
+          type: "gradient",
+          gradient: {
+            shade: "light",
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [50, 0, 100, 100]
+          }
+        },
+        yaxis: {
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          },
+          labels: {
+            show: false,
+            formatter: function (val: any) {
+              return val + "%";
+            }
+          }
+        },
+        title: {
+          text: "Monthly Inflation in Argentina, 2002",
+          offsetY: 320,
+          align: "center",
+          style: {
+            color: "#444"
+          }
+        }
+      };
+    }
+
+
+  }
