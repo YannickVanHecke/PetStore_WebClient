@@ -7,7 +7,7 @@ import { Pet } from '../model/Pet';
   providedIn: 'root'
 })
 export class PetStoreService {
-  private url = "https://localhost:44330/api/Pets";
+  private url = "https://localhost:63325/api/Pets";
 
   constructor(private http: HttpClient) { }
 
