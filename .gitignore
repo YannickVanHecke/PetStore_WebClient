@@ -56,7 +56,3 @@ baseline.json
 
 # Ignore cache created with the Angular CLI.
 .angular/
-
-#angular package files
-package-lock.json
-package.json
