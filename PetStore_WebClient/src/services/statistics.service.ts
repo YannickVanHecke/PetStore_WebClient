@@ -8,7 +8,7 @@ import { ChartOptions } from '../model/chart/chartoptions';
 })
 export class StatisticsService {
 
-  private url = "https://localhost:44330/api/Statistics";
+  private url = "https://localhost:63325/api/Statistics";
 
   constructor(private http: HttpClient) { }
 
