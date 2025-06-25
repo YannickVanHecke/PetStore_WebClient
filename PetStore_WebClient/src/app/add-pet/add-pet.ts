@@ -32,12 +32,13 @@ export class AddPet {
       this.pet.sex = false;
     }
     
-    this.petStoreService.AddPet(this.pet).subscribe(
-      result => {
+    this.petStoreService.AddPet(this.pet).subscribe({
+      next: (result) => {
         this.router.navigate(['/petstore']);
       }, 
-      error => {
-        console.log(error);
+      error: (error) => {
+        this.router.navigate(['/petstore'], {queryParams: {error: error}});
+        }
       }
     );
   }
