@@ -20,8 +20,7 @@ export class Statistics {
     });
   }
   private processResultToDiagram(result: ChartOptions) {
-    console.log(result);
-    this.showChart(result.series, result.xaxis);
+    this.showChart("Aantal huisdieren per soort", result.series, result.xaxis);
   }
 
   private showError(error: any) {
@@ -135,7 +134,7 @@ export class Statistics {
     };
   }
 
-  private showChart(series: ApexAxisChartSeries, categories: ApexXAxis) {
+  private showChart(title: string, series: ApexAxisChartSeries, categories: ApexXAxis) {
     console.log(series);
     console.log(categories);
     this.chartOptions = {
@@ -153,7 +152,8 @@ export class Statistics {
       },
       dataLabels: {
         enabled: true,
-        formatter: function (value) {
+        formatter: function (value,options) {
+          console.log(options);
           return value;
         },
         offsetY: -20,
@@ -214,7 +214,7 @@ export class Statistics {
           }
         },
         title: {
-          text: "Monthly Inflation in Argentina, 2002",
+          text: title,
           offsetY: 320,
           align: "center",
           style: {
