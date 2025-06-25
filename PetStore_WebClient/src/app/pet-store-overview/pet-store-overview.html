@@ -1,0 +1,50 @@
+<h1 class="text-3xl font-bold">
+  Welkom in het voorraadbeheersysteem van de dierenwinkel
+</h1>
+<div>
+  @if(errorMessage)
+  {
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+  }
+  @else
+  {
+  <div class="menu">
+    <a [routerLink]="['/petstore/new']" #addnewpetbutton
+      class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+      Nieuw
+    </a>
+    <a [routerLink]="['/statistics']" #statistics
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    Statistieken
+    </a>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full border-collapse border border-gray-300">
+      <thead>
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-left">Naam</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Beschrijving</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Geboortedatum (Leeftijd)</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Geslacht</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Prijs</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        @for (item of pets; track item.id) {
+        <tr class="hover:bg-gray-50">
+          <td class="border border-gray-300 px-4 py-2">{{ item.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.description }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.animalType | animalType}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.birthDate | date:'dd/MM/yyyy'}} ({{item.birthDate | age}}
+            Jaar) </td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.sex | sex}}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ item.price}}</td>
+        </tr>}
+      </tbody>
+    </table>
+  </div>
+  }
