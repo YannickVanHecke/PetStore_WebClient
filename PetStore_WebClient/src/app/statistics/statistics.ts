@@ -15,8 +15,7 @@ export class Statistics {
   constructor(private statisticsService: StatisticsService) {
     this.statisticsService.GetStatistics().subscribe({
       next: (result) => { this.showChart("Aantal huisdieren per soort", result.series, result.xaxis); },
-      error: (error) => { this.showError(error); },
-      complete: () => { console.log("complete"); }
+      error: (error) => { this.showError(error); }
     });
   }
 
@@ -37,8 +36,6 @@ export class Statistics {
       dataLabels: {
         enabled: true,
         formatter: function (value, options) {
-          console.log(value);
-          console.log(options);
           return value;
         },
         offsetY: -20,
@@ -95,7 +92,6 @@ export class Statistics {
         labels: {
           show: false,
           formatter: function (val: any, options: any) {
-            console.log(options);
             return val + "%";
           }
         }
@@ -112,7 +108,6 @@ export class Statistics {
   }
 
   private showError(error: any) {
-    console.log(error);
     this.chartOptions = {
       series: [
         {
@@ -134,7 +129,6 @@ export class Statistics {
       dataLabels: {
         enabled: true,
         formatter: function (val, opts) {
-          console.log(opts);
           return val + "%";
         },
         offsetY: -20,
