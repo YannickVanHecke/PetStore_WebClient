@@ -20,6 +20,97 @@ export class Statistics {
     });
   }
 
+  private showChart(title: string, series: ApexAxisChartSeries, categories: ApexXAxis) {
+    this.chartOptions = {
+      series: series,
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top"
+          }
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function (value, options) {
+          console.log(value);
+          console.log(options);
+          return value;
+        },
+        offsetY: -20,
+        style: {
+          fontSize: "12px",
+          colors: ["#304758"]
+        }
+      },
+      xaxis: {
+        categories: categories,
+        position: "top",
+        labels: {
+          offsetY: -18
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        crosshairs: {
+          fill: {
+            type: "gradient",
+            gradient: {
+              colorFrom: "#D8E3F0",
+              colorTo: "#BED1E6",
+              stops: [0, 100],
+              opacityFrom: 0.4,
+              opacityTo: 0.5
+            }
+          }
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      yaxis: {
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: false,
+          formatter: function (val: any, options: any) {
+            console.log(options);
+            return val + "%";
+          }
+        }
+      },
+      title: {
+        text: title,
+        offsetY: 320,
+        align: "center",
+        style: {
+          color: "#444"
+        }
+      }
+    };
+  }
+
   private showError(error: any) {
     console.log(error);
     this.chartOptions = {
@@ -131,99 +222,5 @@ export class Statistics {
       }
     };
   }
-
-  private showChart(title: string, series: ApexAxisChartSeries, categories: ApexXAxis) {
-    console.log(series);
-    console.log(categories);
-    this.chartOptions = {
-      series: series,
-      chart: {
-        type: "bar",
-        height: 350
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            position: "top"
-          }
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function (value, options) {
-          console.log(value);
-          console.log(options);
-          return value;
-        },
-        offsetY: -20,
-        style: {
-          fontSize: "12px",
-          colors: ["#304758"]
-        }
-      },
-      xaxis: {
-        categories: categories,
-        position: "top",
-        labels: {
-          offsetY: -18
-        },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5
-            }
-          }
-        }
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "light",
-          type: "horizontal",
-          shadeIntensity: 0.25,
-          gradientToColors: undefined,
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        }
-      },
-      yaxis: {
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        labels: {
-          show: false,
-          formatter: function (val: any, options: any) {
-            console.log(options);
-            return val + "%";
-          }
-        }
-      },
-      title: {
-        text: "Overzicht van de huisdieren",
-        offsetY: 320,
-        align: "center",
-        style: {
-          color: "#444"
-        }
-      }
-    };
-  }
-
 
 }
